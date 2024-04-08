@@ -44,6 +44,7 @@ public class Program
         builder.Services.AddCors(opt =>
         {
             opt.AddPolicy("allowedOrigin", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            opt.AddPolicy("localhost", builder => builder.WithOrigins("http://localhost:4200/"));
         });
 
         var app = builder.Build();

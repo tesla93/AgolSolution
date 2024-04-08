@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Project.Data;
 
@@ -11,9 +12,11 @@ using Project.Data;
 namespace Project.Data.Migrations
 {
     [DbContext(typeof(DataContextBase))]
-    partial class DataContextBaseModelSnapshot : ModelSnapshot
+    [Migration("20240408004414_addOrderModels")]
+    partial class addOrderModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -261,9 +264,6 @@ namespace Project.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("int");
-
                     b.Property<string>("DestinationAirport")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -271,9 +271,6 @@ namespace Project.Data.Migrations
                     b.Property<string>("DestinationInlandAirport")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("OrderStatusId")
-                        .HasColumnType("int");
 
                     b.Property<string>("OriginAirport")
                         .IsRequired()
@@ -283,18 +280,11 @@ namespace Project.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ReferenceId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Shipper")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("OrderStatusId");
 
                     b.ToTable("Orders");
                 });
@@ -393,21 +383,6 @@ namespace Project.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Project.Data.Models.Order", b =>
-                {
-                    b.HasOne("Project.Data.Models.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId");
-
-                    b.HasOne("Project.Data.Models.OrderStatus", "OrderStatus")
-                        .WithMany()
-                        .HasForeignKey("OrderStatusId");
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("OrderStatus");
                 });
 
             modelBuilder.Entity("Project.Data.Models.OrderStatusHistory", b =>
