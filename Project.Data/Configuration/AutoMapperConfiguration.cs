@@ -13,7 +13,11 @@ namespace Project.Data.Configuration
     {
         public AutoMapperConfiguration()
         {
-            CreateMap<Order, OrderDTO>().ReverseMap();
+            CreateMap<Order, OrderDTO>()
+                .ForMember(d => d.OrderStatusName, opt => opt.MapFrom(src => src.OrderStatus.Name))
+                .ForMember(d => d.CustomerName, opt => opt.MapFrom(src => src.Customer.Name))
+                .ReverseMap();
+            CreateMap<OrderStatus, OrderStatusDTO>().ReverseMap();
         }
     }
 }

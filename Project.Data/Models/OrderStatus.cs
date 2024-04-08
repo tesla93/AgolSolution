@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Core.Crud.Data;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Project.Data.Models
 {
-    public class OrderStatus
+    public class OrderStatus: IEntity
     {
         [Key]
         public int Id { get; set; }

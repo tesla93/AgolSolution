@@ -34,6 +34,7 @@ public class Program
         builder.Services.AddSwaggerGen();
 
         builder.Services.AddTransient<IOrderService, OrderService>();
+        builder.Services.AddTransient<IOrderStatusService, OrderStatusService>();
 
         builder.Services.AddAutoMapper(typeof(AutoMapperConfiguration));
 
