@@ -19,5 +19,11 @@ namespace Project.Api.Controllers
             _logger = logger;
             _orderStatusService = orderStatusService;
         }
+
+        [HttpGet, Route("dropdown")]
+        public virtual async Task<IActionResult> Get( CancellationToken cancellationToken = default)
+        {
+            return Ok(await _orderStatusService.GetDropdownItems());
+        }
     }
 }

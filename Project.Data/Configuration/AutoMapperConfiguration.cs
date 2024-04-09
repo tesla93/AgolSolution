@@ -15,8 +15,9 @@ namespace Project.Data.Configuration
         {
             CreateMap<Order, OrderDTO>()
                 .ForMember(d => d.OrderStatusName, opt => opt.MapFrom(src => src.OrderStatus.Name))
-                .ForMember(d => d.CustomerName, opt => opt.MapFrom(src => src.Customer.Name))
-                .ReverseMap();
+                //.ForMember(d => d.CustomerName, opt => opt.MapFrom(src => src.Customer.Name))
+                .ReverseMap()
+                .ForMember(d => d.OrderStatus, opt => opt.Ignore());
             CreateMap<OrderStatus, OrderStatusDTO>().ReverseMap();
         }
     }

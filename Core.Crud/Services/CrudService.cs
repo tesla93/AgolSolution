@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Linq.Expressions;
 using System.Reflection;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Core.Crud.Services
 {
@@ -52,7 +53,6 @@ namespace Core.Crud.Services
                 total = await query.CountAsync(cancellationToken);
             }
 
-            
             return new PageResult<TEntityDTO>
             {
                 Items = _mapper.Map<IEnumerable<TEntityDTO>>(query.ToList()),
@@ -74,10 +74,19 @@ namespace Core.Crud.Services
 
         public async Task<TEntityDTO> Insert(TEntityDTO dto)
         {
-            var entity = _mapper.Map<TEntity>(dto);
-            var addedEntity = await _dbSet.AddAsync(entity);
-            await Save();
-            return _mapper.Map<TEntity, TEntityDTO>(addedEntity.Entity);
+            try
+            {
+                var entity = _mapper.Map<TEntity>(dto);
+                var addedEntity = await _dbSet.AddAsync(entity);
+                await Save();
+                return _mapper.Map<TEntity, TEntityDTO>(addedEntity.Entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            
         }
 
         public async Task<TEntityDTO> Update(TEntity entity)
@@ -103,7 +112,18 @@ namespace Core.Crud.Services
 
         public IQueryable<TEntity> GetAll()
         {
-            return _dbSet.AsQueryable();
+            var query = _dbSet.AsNoTracking().AsQueryable();
+            var excludedTypes = new[] { typeof(Decimal), typeof(DateTime), typeof(DateTimeOffset), typeof(String) };
+            var propertiesKey = typeof(TEntity).GetProperties()
+                .Where(p => !p.PropertyType.IsPrimitive
+             && !p.PropertyType.IsGenericType
+             && !excludedTypes.Contains(p.PropertyType)).Select(p=> p.Name);
+
+            foreach (var path in propertiesKey)
+            {
+                query = query.Include(path);
+            }
+            return query;
         }
 
         public async Task Save()

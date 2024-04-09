@@ -7,8 +7,8 @@ namespace Project.Data.Models
     {
         [Key]
         public int Id { get; set; }
-        public int Sequence { get; set; }
-        public string Icon { get; set; }
-        public string Name { get; set; }
+        public int? Sequence { get; set; }
+        public string? Icon { get; set; }
+        public string? Name { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Core.Crud.Services;
+using Microsoft.EntityFrameworkCore;
 using Project.Data;
 using Project.Data.DTO;
 using Project.Data.Models;
@@ -20,6 +21,19 @@ namespace Project.Services.Repositories
         {
             _context = context;
             _mapper = mapper;
+        }
+
+        public async Task<List<SelectListItem>> GetDropdownItems()
+        {
+            var query = base.GetAll();
+            return await query.OrderBy(q => q.Sequence).Select(q => 
+            new SelectListItem() { 
+                Icon=q.Icon,
+                Sequence= q.Sequence,
+                Value= q.Id.ToString(),
+                Text= q.Name,
+                }
+            ).ToListAsync();
         }
     }
 }

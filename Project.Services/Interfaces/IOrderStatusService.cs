@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace Project.Services.Interfaces
 {
-    public interface IOrderStatusService: ICrudService<OrderStatus, OrderStatusDTO, int>
+    public interface IOrderStatusService : ICrudService<OrderStatus, OrderStatusDTO, int>
     {
+        Task<List<SelectListItem>> GetDropdownItems();
     }
 }
