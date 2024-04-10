@@ -6,6 +6,7 @@ using Project.Data.Configuration;
 using Project.Services.Interfaces;
 using Project.Services.Repositories;
 using System.Text.Json.Serialization;
+using Core.Crud.Filters.Binder;
 
 public class Program
 {
@@ -14,7 +15,10 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
         builder.RegisterDbContext();
         // Add services to the container.
-
+        builder.Services.AddControllersWithViews(config =>
+        {
+            config.ModelBinderProviders.Insert(0, new FilterInfoModelBinderProvider());
+        });
         builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
         //builder.RegisterAuthentication();
@@ -37,6 +41,7 @@ public class Program
         builder.Services.AddTransient<IOrderStatusService, OrderStatusService>();
 
         builder.Services.AddAutoMapper(typeof(AutoMapperConfiguration));
+        
 
         builder.Services.AddAntiforgery(options =>
         {
@@ -58,7 +63,7 @@ public class Program
             app.UseSwaggerUI();
         }
 
-        app.ConfigureExceptionHandler();
+        //app.ConfigureExceptionHandler();
         app.UseHttpsRedirection();
 
         app.UseAuthentication();

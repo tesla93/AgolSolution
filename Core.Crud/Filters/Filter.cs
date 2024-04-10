@@ -10,4 +10,5 @@ namespace Core.Crud.Filters
         }
         public List<FilterInfoBase> Filters { get; set; }
     }
+
 }

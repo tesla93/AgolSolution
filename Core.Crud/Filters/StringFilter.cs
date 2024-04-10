@@ -5,6 +5,10 @@ namespace Core.Crud.Filters
     [RelatedHandler(typeof(StringFilterHandler))]
     public class StringFilter: FilterInfoBase<string>
     {
+        public StringFilter()
+        {
+            
+        }
         public StringFilterMatchMode MatchMode { get; set; }
     }
 
