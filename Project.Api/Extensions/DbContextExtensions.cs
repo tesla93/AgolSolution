@@ -8,9 +8,11 @@ namespace Project.Api.Extensions
     {
         public static WebApplicationBuilder RegisterDbContext(this WebApplicationBuilder builder)
         {
+            bool isDevelopment =Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
+            var connectionString = isDevelopment ? "ConnectionString" : "ProductionConnectionString";
             builder.Services.AddDbContextFactory<DataContextBase>(opt =>
             {
-                opt.UseSqlServer(builder.Configuration.GetValue<string>("ConnectionString"));
+                opt.UseSqlServer(builder.Configuration.GetValue<string>(connectionString));
                 opt.ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.NavigationBaseIncludeIgnored));
             }, ServiceLifetime.Scoped);
             

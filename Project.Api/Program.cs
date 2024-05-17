@@ -6,6 +6,7 @@ using Project.Data.Configuration;
 using Project.Services.Interfaces;
 using Project.Services.Repositories;
 using System.Text.Json.Serialization;
+using Core.Crud.Filters.Binder;
 
 public class Program
 {
@@ -14,7 +15,10 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
         builder.RegisterDbContext();
         // Add services to the container.
-
+        builder.Services.AddControllersWithViews(config =>
+        {
+            config.ModelBinderProviders.Insert(0, new FilterInfoModelBinderProvider());
+        });
         builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
         //builder.RegisterAuthentication();
@@ -37,6 +41,7 @@ public class Program
         builder.Services.AddTransient<IOrderStatusService, OrderStatusService>();
 
         builder.Services.AddAutoMapper(typeof(AutoMapperConfiguration));
+        
 
         builder.Services.AddAntiforgery(options =>
         {
@@ -52,13 +57,13 @@ public class Program
         //app.ExecuteMigrations();
 
         // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
+        if (app.Environment.IsDevelopment() || true)
         {
             app.UseSwagger();
             app.UseSwaggerUI();
         }
 
-        app.ConfigureExceptionHandler();
+        //app.ConfigureExceptionHandler();
         app.UseHttpsRedirection();
 
         app.UseAuthentication();
@@ -70,8 +75,8 @@ public class Program
 
         var services = app.Services.CreateScope().ServiceProvider;
         var context = services.GetRequiredService<DataContextBase>();
-        if (context.Database.GetPendingMigrations().Any())
-            context.Database.Migrate();
+        //if (context.Database.GetPendingMigrations().Any())
+        //    context.Database.Migrate();
 
         app.Run();
     }

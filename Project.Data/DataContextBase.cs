@@ -27,7 +27,9 @@ namespace Project.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = _config.GetValue<string>("ConnectionString");
+            bool isDevelopment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
+
+            var connectionString = _config.GetValue<string>(isDevelopment ? "ConnectionString" : "ProductionConnectionString");
             optionsBuilder.UseSqlServer(connectionString);
         }
     }

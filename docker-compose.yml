@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  agol.api:
+    image: agolapi
+    build:
+      context: .
+      dockerfile: Project.Api/Dockerfile
+
+  agol.db:
+    # image: mcr.microsoft.com/mssql/server:2019-latest
+    image: mcr.microsoft.com/mssql/server:2019-latest

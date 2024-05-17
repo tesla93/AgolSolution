@@ -11,5 +11,9 @@ namespace Core.Crud.Filters
     [RelatedHandler(typeof(BooleanFilterHandler))]
     public class BooleanFilter : FilterInfoBase<bool?>
     {
+        public BooleanFilter()
+        {
+            
+        }
     }
 }
