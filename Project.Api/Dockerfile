@@ -10,6 +10,9 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Project.Api/Project.Api.csproj", "Project.Api/"]
+COPY ["Core.Crud/Core.Crud.csproj", "Core.Crud/"]
+COPY ["Project.Data/Project.Data.csproj", "Project.Data/"]
+COPY ["Project.Services/Project.Services.csproj", "Project.Services/"]
 RUN dotnet restore "./Project.Api/./Project.Api.csproj"
 COPY . .
 WORKDIR "/src/Project.Api"

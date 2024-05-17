@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.Api", "Project.Api\Project.Api.csproj", "{A9B42242-42E4-4E1E-B0C9-46ABDB7A18D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.Api", "Project.Api\Project.Api.csproj", "{A9B42242-42E4-4E1E-B0C9-46ABDB7A18D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.Data", "Project.Data\Project.Data.csproj", "{0D938C1E-7DAF-4E48-B330-33CF5AB863E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.Data", "Project.Data\Project.Data.csproj", "{0D938C1E-7DAF-4E48-B330-33CF5AB863E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.Services", "Project.Services\Project.Services.csproj", "{29F9BCA4-0945-444A-8E2B-9D607BE94F4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.Services", "Project.Services\Project.Services.csproj", "{29F9BCA4-0945-444A-8E2B-9D607BE94F4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Crud", "Core.Crud\Core.Crud.csproj", "{E7609B6B-0CD8-4E2D-8F62-218CF353741B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Crud", "Core.Crud\Core.Crud.csproj", "{E7609B6B-0CD8-4E2D-8F62-218CF353741B}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{95ED3C14-2DE6-4938-AE66-4C4426CA1E95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{E7609B6B-0CD8-4E2D-8F62-218CF353741B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7609B6B-0CD8-4E2D-8F62-218CF353741B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7609B6B-0CD8-4E2D-8F62-218CF353741B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95ED3C14-2DE6-4938-AE66-4C4426CA1E95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95ED3C14-2DE6-4938-AE66-4C4426CA1E95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95ED3C14-2DE6-4938-AE66-4C4426CA1E95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95ED3C14-2DE6-4938-AE66-4C4426CA1E95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

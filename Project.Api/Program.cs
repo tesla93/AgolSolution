@@ -57,7 +57,7 @@ public class Program
         //app.ExecuteMigrations();
 
         // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
+        if (app.Environment.IsDevelopment() || true)
         {
             app.UseSwagger();
             app.UseSwaggerUI();
@@ -75,8 +75,8 @@ public class Program
 
         var services = app.Services.CreateScope().ServiceProvider;
         var context = services.GetRequiredService<DataContextBase>();
-        if (context.Database.GetPendingMigrations().Any())
-            context.Database.Migrate();
+        //if (context.Database.GetPendingMigrations().Any())
+        //    context.Database.Migrate();
 
         app.Run();
     }
