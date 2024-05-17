@@ -27,7 +27,7 @@ jobs:
         run: dotnet build AgolSolution.sln -c Release -o out     
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/AgolSolution/ProjectApi
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/AgolSolution/Project.Api/Project.Api.csproj
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
