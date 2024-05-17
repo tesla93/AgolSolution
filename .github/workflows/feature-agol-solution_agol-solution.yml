@@ -22,8 +22,7 @@ jobs:
           dotnet-version: '8.x'
           include-prerelease: true
 
-      - name: Install dependencies
-        run: dotnet restore AgolSolution.sln -c Release -o out
+     
       - name: Build
         run: dotnet build AgolSolution.sln -c Release -o out     
 
