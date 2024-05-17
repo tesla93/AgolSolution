@@ -23,10 +23,9 @@ jobs:
           include-prerelease: true
 
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore AgolSolution.sln -c Release -o out
       - name: Build
-        run: dotnet build
-     
+        run: dotnet build AgolSolution.sln -c Release -o out     
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/AgolSolution/ProjectApi
